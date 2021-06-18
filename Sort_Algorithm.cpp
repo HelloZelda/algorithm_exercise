@@ -42,7 +42,7 @@ void createArray(int arr[]) {
 // 最坏：O(n^2)
 // 平均：O(n^2)
 void bubbleSort(int arr[]) {
-    // 自己完成代码
+    // 徐畅
 }
 
 // 双向冒泡
