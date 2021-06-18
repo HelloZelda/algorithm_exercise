@@ -75,6 +75,11 @@ void binSort(int arr[]) {
     // 自己完成代码
 }
 
+// 快速排序
+void quickSort(int arr[], int left, int right) {
+    // 自己完成代码
+}
+
 int main() {
     createArray(arr);
     cout << endl;
@@ -98,5 +103,9 @@ int main() {
 
     cout << "二分插入排序" << endl;
     binSort(arr);
+    print(arr);
+    
+    cout << "快速排序" << endl;
+    quickSort(arr);
     print(arr);
 }
