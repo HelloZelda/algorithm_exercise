@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 int len;  // 数组长度
 int arr[10000];
 
@@ -41,24 +40,60 @@ void createArray(int arr[]) {
 // 最好：O(n)，只冒泡一次数组就有序的情况。
 // 最坏：O(n^2)
 // 平均：O(n^2)
-void bubbleSort(int arr[]) {
-    // 徐畅
+void bubbleSort(int arr[]) 
+{
+   	for(int i = 0;i<len;i++)
+	{
+        for(int j =1;j<len-i;++j)
+		{
+            if(arr[j-1]>arr[j]) 
+				swap(arr[j-1],arr[j]);
+		}
+	}
 }
 
 // 双向冒泡
 // 普通的冒泡排序在一趟循环中只能找出一个最大值或最小值，双向冒泡则是多一轮循环既找出最大值也找出最小值
-void bubbleSort_2way(int arr[]) {
-    // 自己完成代码
+void bubbleSort_2way(int arr[]) 
+{
+	int l=0,r=len-1,s=1,i;
+  	while(l<r) 
+	{
+    	for(i=l;i<r;i++) 
+		{
+    		if(arr[i]>arr[i+1]) 
+			{
+    		    swap(arr[i], arr[i+1]);
+    		    s=i;
+    		}
+    	}
+    r=s;
+    for(i=r-1;i>=l;i--) 
+	{ 
+      	if(arr[i]>arr[i+1]) 
+		  	{
+        	swap(arr[i],arr[i+1]);
+        	s=i+1;
+       		}
+    	}
+    l=s;
+  	}  
 }
-
-
-// 选择排序
-// 和冒泡排序相似，区别在于选择排序是将每一个元素和它后面的每一个元素进行比较和交换，从而找到最小值
-// 最好：O(n^2)
-// 最坏：O(n^2)
-// 平均：O(n^2)
-void selectSort(int arr[]) {
-    // 自己完成代码
+void selectSort(int arr[]) 
+{
+     
+	int min;
+	for(int i=0; i<len-1;i++)
+	{
+	    min=i;
+	    for(int j=i+1;j<len;j++)
+		{
+		    if(arr[j]<arr[min])
+				min=j;
+		
+		}
+		swap(arr[i],arr[min]);
+	}
 }
 
 // 插入排序
@@ -66,17 +101,27 @@ void selectSort(int arr[]) {
 // 最好：O(n)，原数组已经是升序的
 // 最坏：O(n^2)， 原数组已经是降序的
 // 平均：O(n^2)
-void insertSort(int arr[]) {
-    // 自己完成代码
+void insertSort(int arr[]) 
+{
+	for (int i = 1; i < len; i++)
+	{
+		for (int j = i - 1; j >= 0 && arr[j + 1] < arr[j]; j--)
+		{
+			swap(arr[j], arr[j + 1]);
+		}
+	}
+
 }
 
 // 二分插入排序
-void binSort(int arr[]) {
+void binSort(int arr[]) 
+{
     // 自己完成代码
 }
 
 // 快速排序
-void quickSort(int arr[], int left, int right) {
+void quickSort(int arr[], int left, int right) 
+{
     // 自己完成代码
 }
 
@@ -104,8 +149,8 @@ int main() {
     cout << "二分插入排序" << endl;
     binSort(arr);
     print(arr);
-    
+
     cout << "快速排序" << endl;
-    quickSort(arr);
+    //quickSort(arr);
     print(arr);
 }
