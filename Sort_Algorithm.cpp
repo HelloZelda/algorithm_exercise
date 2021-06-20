@@ -103,26 +103,77 @@ void selectSort(int arr[])
 // 平均：O(n^2)
 void insertSort(int arr[]) 
 {
-	for (int i = 1; i < len; i++)
-	{
-		for (int j = i - 1; j >= 0 && arr[j + 1] < arr[j]; j--)
-		{
-			swap(arr[j], arr[j + 1]);
-		}
-	}
-
+	int i, j; 
+	for (i = 1; i < len; i++) 
+        if (arr[i] < arr[i - 1])  
+        { 
+			int temp = arr[i]; 
+			for (j = i - 1; j >= 0 && arr[j] > temp; j--) 
+				arr[j + 1] = arr[j];
+			arr[j + 1] = temp;
+		} 
 }
 
 // 二分插入排序
 void binSort(int arr[]) 
 {
-    // 自己完成代码
+    
+    int i,j;
+    i=1;
+    while(i<len)
+    {
+        int x=arr[i];
+        int high=0;
+        int low=i-1;
+        while(high<=low)
+        {
+            int mid=(high+low)/2;
+            if(x<arr[mid])
+                low=mid-1;
+            else
+                high=mid+1;
+        }
+        for(j=i-1;j>=high;j--)
+        {
+            arr[j+1]=arr[j];
+        }
+        arr[high]=x;
+        i++;
+    }
 }
 
 // 快速排序
 void quickSort(int arr[], int left, int right) 
 {
-    // 自己完成代码
+    	if (left > right) 
+	{
+		return;
+	}
+
+	int i = left;
+	int j = right;
+	int b = arr[left];
+	while(i != j) {
+		while(arr[j] >= b && i<j) {
+			j--;
+		}
+
+		while(arr[i] <= b && i<j) {
+			i++;
+		}
+		
+		if(i<j) {
+			int tmp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = tmp;
+		}
+	}
+
+	arr[left] = arr[i];
+	arr[i] = b;
+
+	quickSort(arr, left, i-1);
+	quickSort(arr, i+1, right);
 }
 
 int main() {
@@ -130,7 +181,6 @@ int main() {
     cout << endl;
 
     cout << "冒泡排序" << endl;
-    //bubbleSort(arr);
     bubbleSort(arr);
     print(arr);
 
@@ -151,6 +201,6 @@ int main() {
     print(arr);
 
     cout << "快速排序" << endl;
-    //quickSort(arr);
+    quickSort(arr);
     print(arr);
 }
